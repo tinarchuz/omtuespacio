@@ -97,7 +97,7 @@ nav.scrolled {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: brightness(0.45) blur(3px);
+  filter: brightness(0.25) blur(5px);
   transform: scale(1.05); /* evita bordes blancos por el blur */
   z-index: 0;
 }
