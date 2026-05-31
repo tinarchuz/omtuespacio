@@ -681,3 +681,31 @@ footer p {
   .pillars-row { gap: 1rem; }
   .pillar { padding: 1.5rem 1.8rem; min-width: 120px; }
 }
+
+/* ── TOP BANNER ── */
+.top-banner {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: var(--sage-dark);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 0.55rem 1.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+.top-banner p { opacity: 0.85; font-weight: 300; }
+.top-banner a {
+  color: var(--clay-light);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  transition: opacity var(--t-fast) var(--ease);
+}
+.top-banner a:hover { opacity: 0.75; }
+
+/* Nav desplazado por el banner */
+nav { top: 34px; }
