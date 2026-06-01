@@ -77,7 +77,6 @@ nav.scrolled {
 .nav-links a:hover { color: var(--sage-dark); }
 
 /* ── HERO ── */
-
 .hero {
   min-height: 100vh;
   display: flex;
@@ -89,7 +88,6 @@ nav.scrolled {
   position: relative;
   overflow: hidden;
 }
-
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -98,7 +96,7 @@ nav.scrolled {
   background-position: center;
   background-repeat: no-repeat;
   filter: brightness(0.25) blur(5px);
-  transform: scale(1.05); /* evita bordes blancos por el blur */
+  transform: scale(1.05);
   z-index: 0;
 }
 .hero-circle {
@@ -128,7 +126,6 @@ nav.scrolled {
   animation: fadeUp 1.2s ease forwards 0.3s;
   margin-bottom: 0.5rem;
   mix-blend-mode: screen;
-
 }
 .hero-subtitle {
   font-size: clamp(0.85rem, 2vw, 1.1rem);
@@ -156,9 +153,8 @@ nav.scrolled {
   align-items: center;
   gap: 0.5rem;
   padding: 0.85rem 2.4rem;
-  border: 1.5px solid var(--sage-dark);
+  border: 1.5px solid var(--sage-light);
   border-radius: var(--radius-xl);
-  border-color: var(--sage-light);
   color: var(--sage-light);
   text-decoration: none;
   font-size: 0.75rem;
@@ -166,11 +162,8 @@ nav.scrolled {
   text-transform: uppercase;
   font-weight: 500;
   background: transparent;
-  transition:
-    background var(--t-med) var(--ease),
-    color var(--t-med) var(--ease),
-    box-shadow var(--t-med) var(--ease),
-    transform var(--t-med) var(--ease);
+  transition: background var(--t-med) var(--ease), color var(--t-med) var(--ease),
+              box-shadow var(--t-med) var(--ease), transform var(--t-med) var(--ease);
   opacity: 0;
   animation: fadeUp 1.2s ease forwards 1.2s;
 }
@@ -180,52 +173,13 @@ nav.scrolled {
   box-shadow: 0 8px 28px rgba(77,110,77,0.22);
   transform: translateY(-2px);
 }
-.hero-scroll {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  opacity: 0;
-  animation: fadeUp 1s ease forwards 2s;
-}
-.hero-scroll span {
-  font-size: 0.62rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--stone-light);
-  font-weight: 400;
-}
-.scroll-line {
-  width: 1px; height: 50px;
-  background: rgba(138,158,138,0.35);
-  position: relative;
-  overflow: hidden;
-  border-radius: 2px;
-}
-.scroll-line::after {
-  content: '';
-  position: absolute;
-  top: -100%; left: 0;
-  width: 100%; height: 100%;
-  background: var(--clay);
-  animation: scrollDown 2s ease-in-out infinite 2s;
-}
-@keyframes scrollDown {
-  0% { top: -100%; }
-  100% { top: 100%; }
-}
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
-}
+
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
 /* ── DIVIDER ── */
 .divider {
   width: 48px; height: 1.5px;
-  background: var(--sage-light);
+  background: linear-gradient(to right, var(--clay), var(--sage-light));
   margin: 2rem auto;
   border-radius: 2px;
 }
@@ -280,67 +234,88 @@ section { padding: 6rem 2rem; }
 }
 
 /* ── SERVICES ── */
-.services { background: var(--cream); }
+.services { background: var(--sand); }
 .services-header { text-align: center; margin-bottom: 3.5rem; }
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
 }
+
+/* Diseño estilo primer versión: número grande + tag inferior */
 .service-item {
   background: var(--white);
   border-radius: var(--radius-lg);
-  padding: 2.8rem 2rem;
-  text-align: center;
-  border: 1px solid rgba(138,158,138,0.12);
+  padding: 3rem 2.2rem;
+  border: 1px solid rgba(138,158,138,0.15);
   position: relative;
   overflow: hidden;
-  transition:
-    transform var(--t-med) var(--ease),
-    box-shadow var(--t-med) var(--ease),
-    border-color var(--t-med) var(--ease),
-    background var(--t-med) var(--ease);
-  cursor: default;
+  transition: transform var(--t-med) var(--ease),
+              box-shadow var(--t-med) var(--ease),
+              border-color var(--t-med) var(--ease);
+}
+/* línea superior con gradiente que aparece en hover */
+.service-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--clay), var(--sage-light));
+  opacity: 0;
+  transition: opacity var(--t-med) var(--ease);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 .service-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 48px rgba(77,110,77,0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 56px rgba(77,110,77,0.1);
   border-color: rgba(77,110,77,0.25);
-  background: var(--white);
 }
-.service-icon-wrap {
-  width: 56px; height: 56px;
-  border-radius: var(--radius-md);
-  background: rgba(138,158,138,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.4rem;
-  transition:
-    background var(--t-med) var(--ease),
-    transform var(--t-med) var(--ease);
-}
-.service-item:hover .service-icon-wrap {
-  background: rgba(77,110,77,0.15);
-  transform: scale(1.08) rotate(-2deg);
-}
-.service-icon-wrap .mdi {
-  font-size: 1.55rem;
-  color: var(--sage-dark);
-  transition: color var(--t-fast) var(--ease);
+.service-item:hover::after { opacity: 1; }
+
+/* número decorativo grande */
+.service-num {
+  font-family: 'Figtree', sans-serif;
+  font-size: 4rem;
+  font-weight: 300;
+  color: var(--sand);
+  line-height: 1;
+  margin-bottom: 1rem;
+  display: block;
+  letter-spacing: -0.03em;
 }
 .service-name {
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--stone);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.9rem;
   letter-spacing: -0.01em;
+  line-height: 1.3;
 }
 .service-desc {
-  font-size: 0.82rem;
-  line-height: 1.8;
+  font-size: 0.83rem;
+  line-height: 1.9;
   color: var(--stone-light);
   font-weight: 300;
+}
+.service-desc a {
+  color: var(--clay);
+  text-decoration: none;
+  font-weight: 400;
+}
+.service-desc a:hover { text-decoration: underline; }
+
+/* tag inferior tipo pill */
+.service-tag {
+  display: inline-block;
+  margin-top: 1.4rem;
+  padding: 0.35rem 0.9rem;
+  background: var(--sand);
+  border-radius: var(--radius-xl);
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  font-weight: 600;
 }
 
 /* ── ABOUT ── */
@@ -388,15 +363,6 @@ section { padding: 6rem 2rem; }
   border-radius: calc(var(--radius-xl) + 10px);
   border: 1px solid rgba(77,110,77,0.1);
 }
-.about-om-symbol {
-  font-size: 8.5rem;
-  font-weight: 300;
-  color: var(--sage-light);
-  line-height: 1;
-  opacity: 0.5;
-  letter-spacing: 0;
-  font-family: 'Figtree', sans-serif;
-}
 .about-name-vertical {
   position: absolute;
   right: -2.2rem;
@@ -427,7 +393,6 @@ section { padding: 6rem 2rem; }
   margin-top: 1.5rem;
   padding-left: 1rem;
   border-left: 2px solid var(--sage-light);
-  border-radius: 0 0 0 2px;
 }
 
 /* ── PILLARS ── */
@@ -462,10 +427,9 @@ section { padding: 6rem 2rem; }
   border-radius: var(--radius-lg);
   padding: 2rem 2.5rem;
   min-width: 140px;
-  transition:
-    background var(--t-med) var(--ease),
-    border-color var(--t-med) var(--ease),
-    transform var(--t-med) var(--ease);
+  transition: background var(--t-med) var(--ease),
+              border-color var(--t-med) var(--ease),
+              transform var(--t-med) var(--ease);
 }
 .pillar:hover {
   background: rgba(255,255,255,0.07);
@@ -507,7 +471,7 @@ section { padding: 6rem 2rem; }
 .quote-mark {
   font-size: 5rem;
   line-height: 0.5;
-  color: var(--sage-light);
+  color: var(--clay-light);
   display: block;
   margin-bottom: 1.5rem;
   font-weight: 300;
@@ -558,17 +522,17 @@ cite {
   font-weight: 600;
   border-radius: var(--radius-xl);
   margin-bottom: 2.8rem;
-  transition:
-    background var(--t-med) var(--ease),
-    transform var(--t-med) var(--ease),
-    box-shadow var(--t-med) var(--ease);
+  transition: background var(--t-med) var(--ease),
+              transform var(--t-med) var(--ease),
+              box-shadow var(--t-med) var(--ease);
+  box-shadow: 0 8px 28px rgba(37,211,102,0.2);
 }
 .whatsapp-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
 .whatsapp-btn:hover {
   background: #1db955;
   transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(37,211,102,0.28);
 }
-
 .social-row {
   display: flex;
   justify-content: center;
@@ -590,19 +554,16 @@ cite {
   text-transform: uppercase;
   font-weight: 500;
   background: transparent;
-  transition:
-    border-color var(--t-med) var(--ease),
-    color var(--t-med) var(--ease),
-    background var(--t-med) var(--ease),
-    transform var(--t-med) var(--ease),
-    box-shadow var(--t-med) var(--ease);
+  transition: border-color var(--t-med) var(--ease),
+              color var(--t-med) var(--ease),
+              background var(--t-med) var(--ease),
+              transform var(--t-med) var(--ease);
 }
 .social-link:hover {
-  border-color: var(--stone);
-  color: var(--stone);
-  background: rgba(74,69,64,0.05);
+  border-color: var(--clay);
+  color: var(--clay);
+  background: rgba(196,149,106,0.06);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(74,69,64,0.08);
 }
 .social-link svg { width: 16px; height: 16px; flex-shrink: 0; }
 
@@ -647,10 +608,9 @@ footer p {
   border: 1px solid rgba(245,240,232,0.12);
   border-radius: 50%;
   opacity: 0.45;
-  transition:
-    opacity var(--t-med) var(--ease),
-    border-color var(--t-med) var(--ease),
-    transform var(--t-med) var(--ease);
+  transition: opacity var(--t-med) var(--ease),
+              border-color var(--t-med) var(--ease),
+              transform var(--t-med) var(--ease);
 }
 .footer-social a:hover {
   opacity: 1;
@@ -708,5 +668,4 @@ footer p {
 }
 .top-banner a:hover { opacity: 0.75; }
 
-/* Nav desplazado por el banner */
 nav { top: 34px; }
