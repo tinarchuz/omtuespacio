@@ -1153,7 +1153,7 @@ footer p {
   transition: max-height 0.45s var(--ease), padding var(--t-med) var(--ease);
 }
 .faq-item.open .faq-answer {
-  max-height: 300px;
+  max-height: 600px;
 }
 .faq-answer p {
   font-size: 0.86rem;
