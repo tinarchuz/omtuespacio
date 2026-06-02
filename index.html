@@ -563,18 +563,20 @@
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
   const mobileOverlay = document.getElementById('mobileOverlay');
-
+  
   hamburger.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
     mobileOverlay.classList.toggle('visible', isOpen);
+    mobileOverlay.style.pointerEvents = isOpen ? 'auto' : 'none';
     hamburger.classList.toggle('active', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
-
+  
   function closeMenu() {
     navLinks.classList.remove('open');
     mobileOverlay.classList.remove('visible');
+    mobileOverlay.style.pointerEvents = 'none';
     hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
