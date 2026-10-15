@@ -521,8 +521,39 @@ strong { font-weight: 600; }
   height: clamp(140px, 22vw, 280px);
   color: rgba(245,240,232,0.06);
 }
-.stars-line { display: flex; align-items: center; gap: 0.75rem; color: rgba(245,240,232,0.8) !important; }
-.stars { display: inline-flex; gap: 0.15rem; color: var(--clay-light); font-size: 1.05rem; }
+.stars { display: inline-flex; gap: 0.1rem; color: #fbbc05; font-size: 1rem; }
+.stars-sm { font-size: 0.85rem; }
+
+/* Sello de Google */
+.g-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.25rem 0.6rem 0.6rem;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--stone);
+  text-decoration: none;
+  box-shadow: 0 14px 34px -16px rgba(0,0,0,0.55);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.g-badge:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -18px rgba(0,0,0,0.6); }
+.g-logo {
+  display: grid;
+  place-items: center;
+  width: 2.75rem; height: 2.75rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(36,32,24,0.08);
+}
+.g-logo svg { width: 1.5rem; height: 1.5rem; }
+.g-text { display: flex; flex-direction: column; line-height: 1.2; }
+.g-score { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 700; font-size: 1.1rem; }
+.g-label { font-size: 0.82rem; color: var(--stone-light); font-weight: 500; }
+
+.quote-top { display: flex; align-items: center; justify-content: space-between; }
+.quote-g { width: 1.25rem; height: 1.25rem; }
 .quotes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -671,9 +702,12 @@ strong { font-weight: 600; }
   border-radius: 50%;
   border: 1px solid rgba(245,240,232,0.2);
   color: var(--cream);
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.5s var(--ease);
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.5s var(--ease);
 }
-.socials a:hover { background: var(--clay-light); color: var(--stone); transform: translateY(-3px); }
+.socials a:hover { transform: translateY(-3px); border-color: transparent; color: #fff; }
+.socials .s-ig:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+.socials .s-fb:hover { background: #1877f2; }
+.socials .s-wa:hover { background: #25d366; }
 .credits { text-align: right; }
 
 /* ══════════════════════════════════════
