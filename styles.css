@@ -786,6 +786,245 @@ strong { font-weight: 600; }
 .block > .wrap, .hero > .wrap, .closing > .wrap { z-index: 2; }
 
 /* ══════════════════════════════════════
+   MENÚ MOBILE
+══════════════════════════════════════ */
+.burger {
+  display: none;
+  position: relative;
+  width: 46px; height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(250,248,244,0.75);
+  box-shadow: inset 0 0 0 1px var(--line);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+.burger span {
+  position: absolute;
+  left: 13px;
+  width: 20px; height: 2px;
+  border-radius: 2px;
+  background: var(--stone);
+  transition: transform 0.5s var(--ease), opacity 0.3s ease, width 0.4s var(--ease);
+}
+.burger span:nth-child(1) { top: 16px; }
+.burger span:nth-child(2) { top: 22px; width: 14px; }
+.burger span:nth-child(3) { top: 28px; }
+.burger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burger.active span:nth-child(2) { opacity: 0; transform: translateX(8px); }
+.burger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.mmenu {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  overflow-y: auto;
+  background: var(--cream);
+  clip-path: circle(0% at calc(100% - 2.6rem) 2.6rem);
+  transition: clip-path 0.7s var(--ease);
+}
+.mmenu.open { clip-path: circle(150% at calc(100% - 2.6rem) 2.6rem); }
+.mmenu-inner {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6.5rem 1.5rem 2.5rem;
+}
+.mmenu-logo { width: 120px; margin-bottom: 1.75rem; }
+.mmenu-links { list-style: none; width: 100%; max-width: 420px; }
+.mmenu-links li {
+  border-bottom: 1px solid var(--line);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.mmenu.open .mmenu-links li { opacity: 1; transform: none; transition-delay: calc(0.18s + var(--i) * 0.05s); }
+.mmenu-links a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0.25rem;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+.mmenu-links .ico {
+  width: 2.4rem; height: 2.4rem;
+  padding: 0.55rem;
+  border-radius: 50%;
+  background: var(--sand);
+  color: var(--sage-dark);
+  stroke-width: 1.8;
+}
+.mmenu-cta { width: 100%; max-width: 420px; margin-top: 2rem; }
+.mmenu-social { margin-top: 1.25rem; }
+.mmenu-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--stone-mid);
+  font-weight: 500;
+  text-decoration: none;
+}
+body.menu-open { overflow: hidden; }
+body.menu-open .nav { background: transparent; box-shadow: none; backdrop-filter: none; }
+
+/* ══════════════════════════════════════
+   TU PRIMERA CLASE
+══════════════════════════════════════ */
+.steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  counter-reset: none;
+  position: relative;
+}
+/* línea punteada que une los pasos */
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 3.1rem; left: 12%; right: 12%;
+  border-top: 2px dashed rgba(196,149,106,0.55);
+  z-index: 0;
+}
+.step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+}
+.step-ico {
+  display: grid;
+  place-items: center;
+  width: 6.2rem; height: 6.2rem;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--sage-dark);
+  box-shadow: 0 0 0 10px var(--cream), var(--shadow);
+  transition: transform 0.6s var(--ease);
+}
+.step:hover .step-ico { transform: translateY(-6px) rotate(-6deg); }
+.step-ico .ico { width: 2.4rem; height: 2.4rem; }
+.step-num {
+  position: absolute;
+  top: -0.3rem;
+  left: calc(50% + 1.6rem);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2rem; height: 2rem;
+  border-radius: 50%;
+  background: var(--clay);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.step .h3 { margin-top: 0.75rem; }
+.step p { color: var(--stone-mid); max-width: 32ch; }
+.steps-cta { display: flex; justify-content: center; margin-top: 3rem; }
+
+/* ══════════════════════════════════════
+   INSTAGRAM
+══════════════════════════════════════ */
+.insta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.insta-handle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.35rem 0.9rem 0.35rem 0.5rem;
+  border-radius: 999px;
+  background: var(--white);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.insta-handle .ico {
+  width: 1.7rem; height: 1.7rem;
+  padding: 0.3rem;
+  border-radius: 50%;
+  color: #fff;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+.insta-copy p { margin: 1rem 0 2rem; color: var(--stone-mid); max-width: 42ch; }
+.btn-insta {
+  color: #fff;
+  background: linear-gradient(90deg, #d6249f, #fd5949 55%, #f9a03f);
+  box-shadow: 0 12px 30px -12px rgba(214,36,159,0.6);
+}
+.btn-insta:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -12px rgba(214,36,159,0.7); }
+
+.polaroids {
+  position: relative;
+  display: block;
+  height: 440px;
+  text-decoration: none;
+}
+.polaroid {
+  position: absolute;
+  width: 54%;
+  padding: 0.75rem 0.75rem 0;
+  background: var(--white);
+  border-radius: 6px;
+  box-shadow: 0 24px 50px -20px rgba(36,32,24,0.45);
+  transition: transform 0.7s var(--ease);
+}
+.polaroid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 3px; }
+.polaroid figcaption {
+  padding: 0.75rem 0.25rem 0.9rem;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  color: var(--stone-mid);
+  text-align: center;
+}
+.p1 { left: 0; top: 2%; transform: rotate(-6deg); }
+.p2 { right: 0; top: 12%; transform: rotate(5deg); }
+.p2 img { object-position: 25% center; }
+.polaroids:hover .p1 { transform: rotate(-9deg) translate(-12px, -6px); }
+.polaroids:hover .p2 { transform: rotate(8deg) translate(12px, -6px); }
+.insta-sticker {
+  position: absolute;
+  right: -1%; top: -2%;
+  display: grid;
+  place-items: center;
+  width: 4.2rem; height: 4.2rem;
+  border-radius: 50%;
+  color: #fff;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+  box-shadow: 0 14px 30px -10px rgba(214,36,159,0.6);
+  animation: float 5s ease-in-out infinite;
+}
+.insta-sticker .ico { width: 2rem; height: 2rem; }
+
+@media (max-width: 860px) {
+  .burger { display: block; }
+  .nav-inner { gap: 0.6rem; }
+  .steps { grid-template-columns: 1fr; gap: 2.5rem; }
+  .steps::before { top: 3rem; bottom: 3rem; left: 50%; right: auto; border-top: 0; border-left: 2px dashed rgba(196,149,106,0.55); }
+  .step { background: var(--cream); padding-bottom: 0.5rem; }
+  .insta-grid { grid-template-columns: 1fr; }
+  .polaroids { height: 360px; max-width: 460px; width: 100%; margin: 0 auto; }
+}
+@media (max-width: 600px) {
+  .polaroids { height: 300px; }
+  .polaroid { width: 56%; padding: 0.5rem 0.5rem 0; }
+  .insta-sticker { width: 3.4rem; height: 3.4rem; }
+  .polaroid figcaption { font-size: 0.9rem; padding: 0.5rem 0.2rem 0.6rem; }
+}
+
+/* ══════════════════════════════════════
    WHATSAPP FLOTANTE
 ══════════════════════════════════════ */
 .wa-float {

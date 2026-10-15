@@ -86,6 +86,10 @@
     <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></symbol>
     <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8.5h2.5V5H14c-2.2 0-3.5 1.4-3.5 3.6V11H8v3.4h2.5V21H14v-6.6h2.4l.6-3.4h-3V9.2c0-.4.3-.7 1-.7z"/></symbol>
     <symbol id="i-google" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M9 14.5l2 2 4-4"/></symbol>
+    <symbol id="i-bottle" viewBox="0 0 24 24"><path d="M10 2.5h4M10.5 2.5v3L8 9v11a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 16 20V9l-2.5-3.5v-3"/><path d="M8 13h8"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
     <symbol id="i-quote" viewBox="0 0 48 48"><path fill="currentColor" stroke="none" d="M8 36V24.5C8 16 12.2 10.6 20 8l1.8 3.6C17 13.6 15 17 14.8 21H20v15H8zm20 0V24.5C28 16 32.2 10.6 40 8l1.8 3.6C37 13.6 35 17 34.8 21H40v15H28z"/></symbol>
   </defs>
 </svg>
@@ -109,8 +113,34 @@
       <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
       Reservar
     </a>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
+
+<!-- MENÚ MOBILE -->
+<div class="mmenu" id="mobileMenu" hidden>
+  <div class="blobs" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span></div>
+  <nav class="mmenu-inner" aria-label="Menú">
+    <img src="logoOm.png" alt="" width="609" height="855" class="mmenu-logo">
+    <ul class="mmenu-links">
+      <li style="--i:0"><a href="#clases"><svg class="ico ico-stroke"><use href="#i-columpio"/></svg>Clases</a></li>
+      <li style="--i:1"><a href="#horarios"><svg class="ico ico-stroke"><use href="#i-clock"/></svg>Horarios</a></li>
+      <li style="--i:2"><a href="#primera-clase"><svg class="ico ico-stroke"><use href="#i-leaf"/></svg>Tu primera clase</a></li>
+      <li style="--i:3"><a href="#gisele"><svg class="ico ico-stroke"><use href="#i-heart"/></svg>Gisele</a></li>
+      <li style="--i:4"><a href="#resenas"><svg class="ico ico-stroke"><use href="#i-sparkle"/></svg>Reseñas</a></li>
+      <li style="--i:5"><a href="#preguntas"><svg class="ico ico-stroke"><use href="#i-chat"/></svg>Preguntas</a></li>
+    </ul>
+    <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20un%20turno." target="_blank" rel="noopener" class="btn btn-main btn-lg mmenu-cta">
+      <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+      Reservar por WhatsApp
+    </a>
+    <div class="mmenu-social">
+      <a href="https://www.instagram.com/omtuespacio/" target="_blank" rel="noopener"><svg class="ico ico-stroke"><use href="#i-ig"/></svg>@omtuespacio</a>
+    </div>
+  </nav>
+</div>
 
 <main>
 
@@ -249,6 +279,42 @@
   </div>
 </section>
 
+<!-- PRIMERA CLASE -->
+<section class="block block-cream" id="primera-clase">
+  <div class="wrap">
+    <header class="block-head reveal">
+      <h2 class="h2">Tu primera clase</h2>
+      <p>Tres pasos y ya estás en el columpio. No hace falta inscribirse ni esperar a principio de mes.</p>
+    </header>
+    <ol class="steps">
+      <li class="step reveal" style="--d:0">
+        <span class="step-num">1</span>
+        <span class="step-ico"><svg class="ico ico-stroke"><use href="#i-chat"/></svg></span>
+        <h3 class="h3">Escribile a Gisele</h3>
+        <p>Mandale un WhatsApp y contale qué día te interesa. Si es tu primera vez, te conviene un jueves.</p>
+      </li>
+      <li class="step reveal" style="--d:1">
+        <span class="step-num">2</span>
+        <span class="step-ico"><svg class="ico ico-stroke"><use href="#i-calendar"/></svg></span>
+        <h3 class="h3">Confirmá tu lugar</h3>
+        <p>Gisele te confirma si hay columpio libre. Son 10 por clase, así que conviene reservar con tiempo.</p>
+      </li>
+      <li class="step reveal" style="--d:2">
+        <span class="step-num">3</span>
+        <span class="step-ico"><svg class="ico ico-stroke"><use href="#i-bottle"/></svg></span>
+        <h3 class="h3">Vení con ropa cómoda</h3>
+        <p>Mejor ajustada que suelta, y traé agua. El columpio y todo lo demás ya está en la sala.</p>
+      </li>
+    </ol>
+    <div class="steps-cta reveal">
+      <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20mi%20primera%20clase." target="_blank" rel="noopener" class="btn btn-main btn-lg">
+        <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+        Reservar mi primera clase
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- GISELE -->
 <section class="block block-cream" id="gisele">
   <div class="blobs blobs-soft" aria-hidden="true"><span class="blob b2"></span></div>
@@ -333,6 +399,32 @@
       ¿Ya viniste a OM Tu Espacio?
       <a href="https://share.google/CC6HrSikdHzsdvud8" target="_blank" rel="noopener">Dejá tu reseña en Google</a>
     </p>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="block block-sand insta" id="instagram">
+  <div class="wrap insta-grid">
+    <div class="insta-copy reveal">
+      <span class="insta-handle"><svg class="ico ico-stroke"><use href="#i-ig"/></svg>@omtuespacio</span>
+      <h2 class="h2">El día a día de la sala</h2>
+      <p>Clases, posturas nuevas y novedades del espacio. Seguí a OM Tu Espacio en Instagram.</p>
+      <a href="https://www.instagram.com/omtuespacio/" target="_blank" rel="noopener" class="btn btn-insta btn-lg">
+        <svg class="ico ico-stroke" aria-hidden="true"><use href="#i-ig"/></svg>
+        Seguir en Instagram
+      </a>
+    </div>
+    <a class="polaroids reveal" href="https://www.instagram.com/omtuespacio/" target="_blank" rel="noopener" aria-label="Ver fotos en Instagram">
+      <figure class="polaroid p1">
+        <img src="fondo.jpg" alt="" width="1600" height="1200" loading="lazy" decoding="async">
+        <figcaption>La sala</figcaption>
+      </figure>
+      <figure class="polaroid p2">
+        <img src="gisele.jpg" alt="" width="1600" height="1262" loading="lazy" decoding="async">
+        <figcaption>Relajación final</figcaption>
+      </figure>
+      <span class="insta-sticker"><svg class="ico ico-stroke"><use href="#i-ig"/></svg></span>
+    </a>
   </div>
 </section>
 
@@ -432,6 +524,29 @@
   }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Menú mobile
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobileMenu');
+  function setMenu(open) {
+    burger.classList.toggle('active', open);
+    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    document.body.classList.toggle('menu-open', open);
+    if (open) {
+      menu.hidden = false;
+      requestAnimationFrame(() => menu.classList.add('open'));
+    } else {
+      menu.classList.remove('open');
+      setTimeout(() => { if (!menu.classList.contains('open')) menu.hidden = true; }, 450);
+    }
+  }
+  burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); burger.focus(); }
+  });
+  window.matchMedia('(min-width: 861px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
 
   // Aparición suave al hacer scroll
   const reveals = document.querySelectorAll('.reveal');
