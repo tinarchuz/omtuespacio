@@ -709,6 +709,8 @@ strong { font-weight: 600; }
 .socials .s-fb:hover { background: #1877f2; }
 .socials .s-wa:hover { background: #25d366; }
 .credits { text-align: right; }
+.credits a { color: var(--clay-light); text-decoration: underline; text-underline-offset: 0.2em; }
+.credits a:hover { color: var(--cream); }
 
 /* ══════════════════════════════════════
    TEXTURAS DE FONDO
@@ -870,6 +872,7 @@ strong { font-weight: 600; }
   text-decoration: none;
 }
 body.menu-open { overflow: hidden; }
+body.menu-open .wa-float { opacity: 0; pointer-events: none; }
 body.menu-open .nav { background: transparent; box-shadow: none; backdrop-filter: none; }
 
 /* ══════════════════════════════════════
@@ -1148,5 +1151,6 @@ summary:focus-visible {
   .option-ico { width: 2.8rem; height: 2.8rem; font-size: 1.2rem; }
   .closing-foot { grid-template-columns: 1fr; text-align: center; justify-items: center; }
   .credits { text-align: center; }
+  .closing { padding-bottom: 6.5rem; }
   .wa-float { right: 1rem; bottom: 1rem; }
 }
