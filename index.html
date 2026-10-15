@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,35 +9,68 @@
 <meta name="description" content="OM Tu Espacio — Yoga Ashtanga, Yoga en Columpios y Tarot Terapéutico con Gisele Valerio. Clases presenciales y online. Grupos reducidos, acompañamiento personalizado.">
 <meta name="keywords" content="yoga, yoga en columpios buenos aires, ashtanga yoga, tarot terapeutico, yoga online argentina, bienestar, Gisele Valerio">
 <meta name="author" content="Gisele Valerio — OM Tu Espacio">
+<meta name="theme-color" content="#4d6e4d">
+<link rel="canonical" href="https://omtuespacio.com/">
 
 <!-- Open Graph / Social Sharing -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://omtuespacio.com/">
 <meta property="og:title" content="OM Tu Espacio | Yoga &amp; Bienestar con Gisele Valerio">
 <meta property="og:description" content="Yoga Ashtanga, Yoga en Columpios y Tarot Terapéutico. Clases presenciales y online. Tu espacio de sanación te espera.">
-<meta property="og:image" content="gisele.jpg">
+<meta property="og:image" content="https://omtuespacio.com/gisele.jpg">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="OM Tu Espacio">
 
 <!-- WhatsApp / Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="OM Tu Espacio | Yoga &amp; Bienestar">
 <meta name="twitter:description" content="Yoga en Columpios, Ashtanga y Tarot Terapéutico con Gisele Valerio. Buenos Aires.">
-<meta name="twitter:image" content="gisele.jpg">
+<meta name="twitter:image" content="https://omtuespacio.com/gisele.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.remove('no-js');</script>
 <link rel="icon" type="image/png" href="logo_circle_256.png" sizes="256x256">
-<link rel="icon" type="image/png" href="logo_circle_256.png">
 <link rel="apple-touch-icon" href="logo_circle_256.png">
+
+<!-- Datos estructurados (Google) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "OM Tu Espacio",
+  "description": "Yoga en Columpios, Ashtanga Yoga Terapéutico y Tarot Terapéutico con Gisele Valerio.",
+  "url": "https://omtuespacio.com/",
+  "image": "https://omtuespacio.com/gisele.jpg",
+  "logo": "https://omtuespacio.com/logo.png",
+  "telephone": "+5491138262856",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Saavedra, Buenos Aires",
+    "addressCountry": "AR"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Thursday"], "opens": "19:30", "closes": "21:00" }
+  ],
+  "founder": { "@type": "Person", "name": "Gisele Valerio" },
+  "sameAs": [
+    "https://www.instagram.com/omtuespacio/",
+    "https://www.facebook.com/GISELEVALERIO86/"
+  ]
+}
+</script>
 </head>
 <body>
 
+<a href="#intro" class="skip-link">Saltar al contenido</a>
+
 <!-- BANNER CTA -->
 <div class="top-banner" id="topBanner">
-  <p>Turnos disponibles esta semana · Martes y jueves 19:30 hs</p>
-  <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20un%20turno." target="_blank">
+  <p>Turnos disponibles esta semana · Martes y jueves 19:30&nbsp;hs</p>
+  <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20un%20turno." target="_blank" rel="noopener">
     Reservá tu turno →
   </a>
   <button class="banner-close" id="bannerClose" aria-label="Cerrar banner">
@@ -47,8 +80,8 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">
-    <img src="logo.png" alt="OM Tu Espacio" class="nav-logo-img">
+  <a href="#" class="nav-logo" aria-label="Ir al inicio">
+    <img src="logo.png" alt="OM Tu Espacio — inicio" class="nav-logo-img" width="52" height="52">
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#servicios" onclick="closeMenu()">Servicios</a></li>
@@ -58,7 +91,7 @@
     <li><a href="#faq" onclick="closeMenu()">FAQ</a></li>
     <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
   </ul>
-  <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20un%20turno." target="_blank" class="nav-cta">
+  <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20un%20turno." target="_blank" rel="noopener" class="nav-cta">
     Reservar turno
   </a>
   <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
@@ -76,11 +109,11 @@
   <div class="hero-circle"></div>
   <div class="hero-circle"></div>
   <div class="hero-content">
-    <img src="logo.png" alt="OM Tu Espacio" class="hero-logo-img">
-    <p class="hero-subtitle">OM Tu Espacio</p>
+    <img src="logo.png" alt="" class="hero-logo-img" width="380" height="380">
+    <h1 class="hero-subtitle">OM Tu Espacio</h1>
     <p class="hero-tagline">Espacio de YOGA · Gisele Valerio · Buenos Aires</p>
     <div class="hero-buttons">
-      <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20un%20turno." target="_blank" class="hero-cta-primary">
+      <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20un%20turno." target="_blank" rel="noopener" class="hero-cta-primary">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;flex-shrink:0;">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
@@ -144,9 +177,9 @@
           Movimiento, suspensión y respiración para liberar tensiones, fortalecer el cuerpo y generar bienestar profundo. El columpio permite explorar posturas con soporte y disfrutar de una relajación única.
         </p>
         <ul class="service-features">
-          <li><span class="mdi mdi-check-circle-outline"></span> Grupos reducidos</li>
-          <li><span class="mdi mdi-check-circle-outline"></span> Acompañamiento personalizado</li>
-          <li><span class="mdi mdi-check-circle-outline"></span> Apto para principiantes</li>
+          <li><span class="mdi mdi-check-circle-outline" aria-hidden="true"></span> Grupos reducidos</li>
+          <li><span class="mdi mdi-check-circle-outline" aria-hidden="true"></span> Acompañamiento personalizado</li>
+          <li><span class="mdi mdi-check-circle-outline" aria-hidden="true"></span> Jueves apto para principiantes</li>
         </ul>
         <div class="service-footer">
           <span class="service-tag">Presencial · Saavedra</span>
@@ -161,9 +194,9 @@
           Una práctica dinámica y progresiva que une movimiento, respiración y meditación para fortalecer cuerpo y mente desde adentro.
         </p>
         <ul class="service-features">
-          <li><span class="mdi mdi-check-circle-outline"></span> Clases en vivo y grabadas</li>
-          <li><span class="mdi mdi-check-circle-outline"></span> Meditaciones guiadas</li>
-          <li><span class="mdi mdi-check-circle-outline"></span> Journals incluidos</li>
+          <li><span class="mdi mdi-check-circle-outline" aria-hidden="true"></span> Clases en vivo y grabadas</li>
+          <li><span class="mdi mdi-check-circle-outline" aria-hidden="true"></span> Meditaciones guiadas</li>
+          <li><span class="mdi mdi-check-circle-outline" aria-hidden="true"></span> Journals incluidos</li>
         </ul>
         <div class="service-footer">
           <span class="service-tag">Online</span>
@@ -178,9 +211,9 @@
           Una herramienta de introspección y autoconocimiento que ilumina tu camino y acompaña tu proceso de transformación interior.
         </p>
         <ul class="service-features">
-          <li><span class="mdi mdi-check-circle-outline"></span> Sesiones 1 a 1</li>
-          <li><span class="mdi mdi-check-circle-outline"></span> Eventos especiales</li>
-          <li><span class="mdi mdi-check-circle-outline"></span> Experiencia grupal para eventos</li>
+          <li><span class="mdi mdi-check-circle-outline" aria-hidden="true"></span> Sesiones 1 a 1</li>
+          <li><span class="mdi mdi-check-circle-outline" aria-hidden="true"></span> Eventos especiales</li>
+          <li><span class="mdi mdi-check-circle-outline" aria-hidden="true"></span> Experiencia grupal para eventos</li>
         </ul>
         <div class="service-footer">
           <span class="service-tag">Sesiones individuales</span>
@@ -204,29 +237,30 @@
         <div class="schedule-day">Martes</div>
         <div class="schedule-time">19:30 hs</div>
         <div class="schedule-name">Yoga en Columpios</div>
-        <div class="schedule-detail">Nivel abierto · Grupos reducidos</div>
-        <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20la%20clase%20del%20martes." target="_blank" class="schedule-btn">Reservar lugar</a>
+        <div class="schedule-detail">Clase dinámica · Con algo de experiencia</div>
+        <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20la%20clase%20del%20martes." target="_blank" rel="noopener" class="schedule-btn">Reservar lugar</a>
       </div>
       <div class="schedule-card featured">
         <div class="schedule-day">Jueves</div>
         <div class="schedule-time">19:30 hs</div>
         <div class="schedule-name">Yoga en Columpios</div>
-        <div class="schedule-detail">Nivel abierto · Grupos reducidos</div>
-        <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20la%20clase%20del%20jueves." target="_blank" class="schedule-btn">Reservar lugar</a>
+        <div class="schedule-detail">Restaurativa · Todos los niveles</div>
+        <span class="schedule-chip">Ideal primera clase</span>
+        <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20la%20clase%20del%20jueves." target="_blank" rel="noopener" class="schedule-btn">Reservar lugar</a>
       </div>
       <div class="schedule-card online">
         <div class="schedule-day">Online</div>
         <div class="schedule-time">Flexible</div>
         <div class="schedule-name">Ashtanga Terapéutico</div>
         <div class="schedule-detail">Grabaciones + en vivo · A tu ritmo</div>
-        <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Me%20interesa%20el%20yoga%20online." target="_blank" class="schedule-btn">Consultar</a>
+        <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Me%20interesa%20el%20yoga%20online." target="_blank" rel="noopener" class="schedule-btn">Consultar</a>
       </div>
       <div class="schedule-card tarot">
         <div class="schedule-day">Sesiones</div>
         <div class="schedule-time">A coordinar</div>
         <div class="schedule-name">Tarot Terapéutico</div>
         <div class="schedule-detail">Individual · También para eventos</div>
-        <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Me%20interesa%20una%20sesi%C3%B3n%20de%20Tarot." target="_blank" class="schedule-btn">Consultar</a>
+        <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Me%20interesa%20una%20sesi%C3%B3n%20de%20Tarot." target="_blank" rel="noopener" class="schedule-btn">Consultar</a>
       </div>
     </div>
 
@@ -243,7 +277,7 @@
     <div class="about-inner">
       <div class="about-visual reveal">
         <div class="about-frame">
-          <img src="gisele.jpg" alt="Gisele Valerio — OM Tu Espacio" class="about-photo">
+          <img src="gisele.jpg" alt="Gisele Valerio — OM Tu Espacio" class="about-photo" width="1600" height="1262" loading="lazy" decoding="async">
           <div class="about-name-vertical">Gisele Valerio</div>
         </div>
       </div>
@@ -337,7 +371,7 @@
         <div class="testimonial-author">
           <div class="testimonial-avatar">K</div>
           <div>
-            <span class="testimonial-name">Kyara Roldan.</span>
+            <span class="testimonial-name">Kyara Roldan</span>
             <span class="testimonial-service">Yoga en Columpios</span>
           </div>
         </div>
@@ -351,7 +385,7 @@
         <div class="testimonial-author">
           <div class="testimonial-avatar">A</div>
           <div>
-            <span class="testimonial-name">Agui Muggeri.</span>
+            <span class="testimonial-name">Agui Muggeri</span>
             <span class="testimonial-service">Yoga en Columpios</span>
           </div>
         </div>
@@ -365,7 +399,7 @@
         <div class="testimonial-author">
           <div class="testimonial-avatar">P</div>
           <div>
-            <span class="testimonial-name">Paula Toranzos.</span>
+            <span class="testimonial-name">Paula Toranzos</span>
             <span class="testimonial-service">Profesora de YOGA</span>
           </div>
         </div>
@@ -374,7 +408,7 @@
 
     <p class="testimonial-note reveal reveal-delay-4">
       ¿Ya pasaste por OM Tu Espacio? 
-      <a href="https://share.google/CC6HrSikdHzsdvud8" target="_blank">Dejá tu reseña en Google →</a>
+      <a href="https://share.google/CC6HrSikdHzsdvud8" target="_blank" rel="noopener">Dejá tu reseña en Google →</a>
     </p>
   </div>
 </section>
@@ -392,54 +426,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contacto">
-  <div class="container">
-    <span class="section-label reveal">Empezá hoy</span>
-    <h2 class="section-title reveal reveal-delay-1">¿Lista para empezar<br>tu <em>práctica</em>?</h2>
-    <p class="contact-sub reveal reveal-delay-2">
-      Cada proceso es único. Escribime y encontremos juntas el camino más adecuado para vos.
-    </p>
-
-    <div class="contact-options reveal reveal-delay-3">
-      <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20empezar%20Yoga%20en%20Columpios." target="_blank" class="contact-option">
-        <span class="contact-option-icon mdi mdi-yoga"></span>
-        <span class="contact-option-label">Quiero empezar en Columpios</span>
-      </a>
-      <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Me%20interesa%20el%20yoga%20online." target="_blank" class="contact-option">
-        <span class="contact-option-icon mdi mdi-laptop"></span>
-        <span class="contact-option-label">Quiero practicar online</span>
-      </a>
-      <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20una%20sesi%C3%B3n%20de%20Tarot." target="_blank" class="contact-option">
-        <span class="contact-option-icon mdi mdi-cards-outline"></span>
-        <span class="contact-option-label">Quiero una sesión de Tarot</span>
-      </a>
-    </div>
-
-    <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Me%20gustar%C3%ADa%20consultar%20sobre%20OM%20Tu%20Espacio." target="_blank" class="whatsapp-btn reveal reveal-delay-4">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      Escribir a Gisele
-    </a>
-
-    <div class="social-row reveal reveal-delay-4" style="margin-top:1.5rem;">
-      <a href="https://www.instagram.com/omtuespacio/" target="_blank" class="social-link" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-        </svg>
-        @omtuespacio
-      </a>
-      <a href="https://www.facebook.com/GISELEVALERIO86/" target="_blank" class="social-link" aria-label="Facebook">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-        </svg>
-        Facebook
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="container">
@@ -450,61 +436,61 @@
     <div class="faq-list reveal reveal-delay-3">
 
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-1">
           ¿Necesito experiencia previa para el Yoga en Columpios?
-          <span class="faq-icon mdi mdi-plus"></span>
+          <span class="faq-icon mdi mdi-plus" aria-hidden="true"></span>
         </button>
-        <div class="faq-answer">
+        <div class="faq-answer" id="faq-1" role="region">
           <p>Depende del día. La clase de los <strong>martes</strong> es más dinámica y requiere algo de experiencia en movimiento — ideal si ya practicás alguna actividad física o tenés nociones de yoga. Los <strong>jueves</strong>, en cambio, son clases restaurativas, completamente aptas para todos los niveles: trabajamos de manera progresiva, a tu ritmo, con atención personalizada. Si es tu primera vez, los jueves son el mejor punto de entrada.</p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-2">
           ¿Qué ropa tengo que usar y qué llevar?
-          <span class="faq-icon mdi mdi-plus"></span>
+          <span class="faq-icon mdi mdi-plus" aria-hidden="true"></span>
         </button>
-        <div class="faq-answer">
+        <div class="faq-answer" id="faq-2" role="region">
           <p>Ropa cómoda es suficiente. Lo único importante es que no sea demasiado suelta — al trabajar con el columpio y hacer algunas inversiones, la ropa ajustada te va a resultar mucho más cómoda. Todo lo demás lo ponemos nosotras: el espacio, los columpios y los elementos necesarios. Solo traé agua y buena energía.</p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-3">
           ¿Cuántas personas hay por clase?
-          <span class="faq-icon mdi mdi-plus"></span>
+          <span class="faq-icon mdi mdi-plus" aria-hidden="true"></span>
         </button>
-        <div class="faq-answer">
+        <div class="faq-answer" id="faq-3" role="region">
           <p>La sala tiene <strong>10 columpios</strong>, que es el máximo de personas por clase. Los cupos se completan rápido, así que te recomiendo reservar con anticipación para asegurarte el tuyo. Ese límite no es casualidad: grupos chicos permiten que pueda acompañarte de manera real durante toda la clase.</p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-4">
           ¿Cómo reservo mi lugar?
-          <span class="faq-icon mdi mdi-plus"></span>
+          <span class="faq-icon mdi mdi-plus" aria-hidden="true"></span>
         </button>
-        <div class="faq-answer">
+        <div class="faq-answer" id="faq-4" role="region">
           <p>Por WhatsApp, directo conmigo. Me contás qué día te interesa, te confirmo si hay lugar disponible y coordinamos. Simple y rápido. Todas las clases requieren reserva previa — no se puede llegar sin avisar, ya que los cupos son limitados.</p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-5">
           ¿Puedo empezar en cualquier momento o hay inscripción por mes?
-          <span class="faq-icon mdi mdi-plus"></span>
+          <span class="faq-icon mdi mdi-plus" aria-hidden="true"></span>
         </button>
-        <div class="faq-answer">
+        <div class="faq-answer" id="faq-5" role="region">
           <p>Podés arrancar cuando quieras, no hay que esperar el inicio de mes ni ninguna fecha en particular. Si hoy te decidís, mañana podés estar en clase. Consultame por WhatsApp y vemos juntas qué opción se adapta mejor a tu disponibilidad.</p>
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-6">
           ¿Las clases online son en vivo o grabadas?
-          <span class="faq-icon mdi mdi-plus"></span>
+          <span class="faq-icon mdi mdi-plus" aria-hidden="true"></span>
         </button>
-        <div class="faq-answer">
+        <div class="faq-answer" id="faq-6" role="region">
           <p>Las clases se transmiten <strong>en vivo por Google Meet</strong> y quedan grabadas automáticamente. Con la membresía tenés acceso a <strong>todas las grabaciones anteriores</strong>, más meditaciones guiadas y journals para imprimir — una herramienta para llevar un registro real de cómo te sentís a lo largo de tu práctica. Podés practicar en vivo o cuando te quede cómodo, sin perder nada.</p>
         </div>
       </div>
@@ -513,24 +499,77 @@
   </div>
 </section>
 
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <span class="section-label reveal">Empezá hoy</span>
+    <h2 class="section-title reveal reveal-delay-1">¿Lista para empezar<br>tu <em>práctica</em>?</h2>
+    <p class="contact-sub reveal reveal-delay-2">
+      Cada proceso es único. Escribime y encontremos juntas el camino más adecuado para vos.
+    </p>
+
+    <div class="contact-options reveal reveal-delay-3">
+      <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20empezar%20Yoga%20en%20Columpios." target="_blank" rel="noopener" class="contact-option">
+        <span class="contact-option-icon mdi mdi-yoga"></span>
+        <span class="contact-option-label">Quiero empezar en Columpios</span>
+      </a>
+      <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Me%20interesa%20el%20yoga%20online." target="_blank" rel="noopener" class="contact-option">
+        <span class="contact-option-icon mdi mdi-laptop"></span>
+        <span class="contact-option-label">Quiero practicar online</span>
+      </a>
+      <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20una%20sesi%C3%B3n%20de%20Tarot." target="_blank" rel="noopener" class="contact-option">
+        <span class="contact-option-icon mdi mdi-cards-outline"></span>
+        <span class="contact-option-label">Quiero una sesión de Tarot</span>
+      </a>
+    </div>
+
+    <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Me%20gustar%C3%ADa%20consultar%20sobre%20OM%20Tu%20Espacio." target="_blank" rel="noopener" class="whatsapp-btn reveal reveal-delay-4">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Escribir a Gisele
+    </a>
+
+    <div class="social-row reveal reveal-delay-4" style="margin-top:1.5rem;">
+      <a href="https://www.instagram.com/omtuespacio/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        @omtuespacio
+      </a>
+      <a href="https://www.facebook.com/GISELEVALERIO86/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20un%20turno." target="_blank" rel="noopener" class="wa-float" id="waFloat" aria-label="Escribir por WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">OM Tu Espacio</span>
   <div class="footer-line"></div>
   <p>Gisele Valerio · Espacio de Yoga · Buenos Aires</p>
-  <p style="margin-top: 0.4rem;">Yoga Ashtanga · Yoga en Columpios · Tarot Terapéutico</p>
+  <p style="margin-top: 0.4rem;">Yoga en Columpios · Ashtanga Yoga · Tarot Terapéutico</p>
   <div class="footer-social">
-    <a href="https://www.instagram.com/omtuespacio/" target="_blank" aria-label="Instagram">
+    <a href="https://www.instagram.com/omtuespacio/" target="_blank" rel="noopener" aria-label="Instagram">
       <svg viewBox="0 0 24 24" fill="rgba(245,240,232,0.75)">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
       </svg>
     </a>
-    <a href="https://www.facebook.com/GISELEVALERIO86/" target="_blank" aria-label="Facebook">
+    <a href="https://www.facebook.com/GISELEVALERIO86/" target="_blank" rel="noopener" aria-label="Facebook">
       <svg viewBox="0 0 24 24" fill="rgba(245,240,232,0.75)">
         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
       </svg>
     </a>
-    <a href="https://wa.me/5491138262856" target="_blank" aria-label="WhatsApp">
+    <a href="https://wa.me/5491138262856" target="_blank" rel="noopener" aria-label="WhatsApp">
       <svg viewBox="0 0 24 24" fill="rgba(245,240,232,0.75)">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
       </svg>
@@ -540,48 +579,69 @@
 </footer>
 
 <script>
-  // ── BANNER CLOSE ──
   const banner = document.getElementById('topBanner');
   const bannerClose = document.getElementById('bannerClose');
   const navbar = document.getElementById('navbar');
+  const waFloat = document.getElementById('waFloat');
+  const hero = document.querySelector('.hero');
 
+  // ── NAV DEBAJO DEL BANNER (altura real, también si el texto ocupa 2 líneas) ──
+  function bannerHeight() {
+    return banner.style.display === 'none' ? 0 : banner.offsetHeight;
+  }
+  function placeNav() { navbar.style.top = bannerHeight() + 'px'; }
+  placeNav();
+  window.addEventListener('resize', placeNav);
+
+  // ── BANNER CLOSE ──
   bannerClose.addEventListener('click', () => {
     banner.style.transition = 'opacity 0.3s, transform 0.3s';
     banner.style.opacity = '0';
     banner.style.transform = 'translateY(-100%)';
     setTimeout(() => {
       banner.style.display = 'none';
-      navbar.style.top = '0';
+      placeNav();
     }, 300);
   });
 
-  // ── NAVBAR SCROLL ──
-  window.addEventListener('scroll', () => {
+  // ── NAVBAR SCROLL + WHATSAPP FLOTANTE ──
+  function onScroll() {
     navbar.classList.toggle('scrolled', window.scrollY > 60);
-  });
+    waFloat.classList.toggle('visible', window.scrollY > hero.offsetHeight * 0.7);
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 
   // ── HAMBURGER MENU ──
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
   const mobileOverlay = document.getElementById('mobileOverlay');
-  
+
   hamburger.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
     mobileOverlay.classList.toggle('visible', isOpen);
     mobileOverlay.style.pointerEvents = isOpen ? 'auto' : 'none';
     hamburger.classList.toggle('active', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen);
+    hamburger.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
-  
+
   function closeMenu() {
     navLinks.classList.remove('open');
     mobileOverlay.classList.remove('visible');
     mobileOverlay.style.pointerEvents = 'none';
     hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Abrir menú');
     document.body.style.overflow = '';
   }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeMenu();
+      hamburger.focus();
+    }
+  });
 
   // ── COPYRIGHT YEAR ──
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -603,6 +663,7 @@
   });
 
   // ── SMOOTH SCROLL CON OFFSET ──
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
@@ -610,25 +671,27 @@
       const target = document.querySelector(href);
       if (!target) return;
       e.preventDefault();
-      const bannerH = (banner.style.display === 'none') ? 0 : (banner.offsetHeight || 0);
-      const navH = navbar.offsetHeight || 0;
-      const offset = bannerH + navH + 16;
+      const offset = bannerHeight() + (navbar.offsetHeight || 0) + 16;
       const top = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
+      window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
   });
 
   // ── REVEAL ON SCROLL ──
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => observer.observe(el));
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
 </script>
 </body>
 </html>
