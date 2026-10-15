@@ -109,10 +109,6 @@
         <li><a href="#preguntas">Preguntas</a></li>
       </ul>
     </nav>
-    <a href="https://wa.me/5491138262856?text=Hola%20Gisele!%20Quiero%20reservar%20un%20turno." target="_blank" rel="noopener" class="btn btn-main btn-sm">
-      <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
-      Reservar
-    </a>
     <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
@@ -503,7 +499,7 @@
         <a href="https://www.facebook.com/GISELEVALERIO86/" target="_blank" rel="noopener" aria-label="Facebook" class="s-fb"><svg class="ico ico-stroke"><use href="#i-fb"/></svg></a>
         <a href="https://wa.me/5491138262856" target="_blank" rel="noopener" aria-label="WhatsApp" class="s-wa"><svg class="ico"><use href="#i-wa"/></svg></a>
       </div>
-      <p class="credits">© <span id="year">2026</span> OM Tu Espacio. Sitio hecho por Santino Cadenas.</p>
+      <p class="credits">© <span id="year">2026</span> OM Tu Espacio. Sitio hecho por <a href="https://www.linkedin.com/in/santino-lucas-cadenas-713462264/" target="_blank" rel="noopener">Santino Cadenas</a>.</p>
     </div>
   </div>
 </footer>
@@ -539,6 +535,7 @@
     document.body.classList.toggle('menu-open', open);
     if (open) {
       menu.hidden = false;
+      menu.scrollTop = 0;
       requestAnimationFrame(() => menu.classList.add('open'));
     } else {
       menu.classList.remove('open');
@@ -546,7 +543,21 @@
     }
   }
   burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  // Los links del menú cierran el menú y recién después llevan a la sección,
+  // porque mientras está abierto la página no puede scrollear
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (!href.startsWith('#')) { setMenu(false); return; }
+    e.preventDefault();
+    const target = document.querySelector(href);
+    setMenu(false);
+    if (target) {
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+        history.replaceState(null, '', href);
+      }, 50);
+    }
+  }));
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); burger.focus(); }
   });
