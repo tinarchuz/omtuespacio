@@ -35,7 +35,7 @@
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + var(--safe-top) - 1px); }
+html { scroll-padding-top: calc(var(--nav-h) + var(--safe-top) - 1px); }
 
 body {
   font-family: var(--sans);
@@ -44,8 +44,22 @@ body {
   background: var(--cream);
   color: var(--stone);
   -webkit-font-smoothing: antialiased;
+  /* La fuente de reemplazo ocupa lo mismo que Figtree mientras carga */
+  font-size-adjust: from-font;
   overflow-x: hidden;
 }
+
+/* Títulos con líneas parejas y párrafos sin palabras sueltas al final */
+h1, h2, h3, .closing-title { text-wrap: balance; }
+p, li, blockquote { text-wrap: pretty; }
+
+/* Colores de la marca en la interfaz que dibuja el navegador */
+:root {
+  color-scheme: light;
+  accent-color: var(--sage-dark);
+  scrollbar-color: var(--sage) var(--cream);
+}
+::selection { background: var(--clay-light); color: var(--stone); }
 
 /* Textura de grano muy suave sobre toda la página */
 body::after {
@@ -154,7 +168,7 @@ strong { font-weight: 600; }
   border-radius: 50%;
   filter: blur(70px);
   opacity: 0.55;
-  animation: drift 22s ease-in-out infinite alternate;
+  @media (prefers-reduced-motion: no-preference) { animation: drift 22s ease-in-out infinite alternate; }
 }
 .b1 { width: 520px; height: 520px; background: var(--sage-light); top: -140px; left: -120px; }
 .b2 { width: 460px; height: 460px; background: var(--clay-light); top: 20%; right: -140px; animation-delay: -7s; animation-duration: 26s; }
@@ -244,7 +258,7 @@ strong { font-weight: 600; }
   width: clamp(220px, 30vw, 380px);
   height: auto;
   filter: drop-shadow(0 18px 30px rgba(122,102,96,0.18));
-  animation: enter 1.4s var(--ease) both, breathe 7s ease-in-out 1.6s infinite;
+  @media (prefers-reduced-motion: no-preference) { animation: enter 1.4s var(--ease) both, breathe 7s ease-in-out 1.6s infinite; }
 }
 .hero-lede {
   margin-top: 1.75rem;
@@ -252,7 +266,7 @@ strong { font-weight: 600; }
   font-size: clamp(1.15rem, 1.8vw, 1.35rem);
   line-height: 1.5;
   color: var(--stone-mid);
-  animation: enter 1.2s var(--ease) 0.25s both;
+  @media (prefers-reduced-motion: no-preference) { animation: enter 1.2s var(--ease) 0.25s both; }
 }
 .hero-lede strong { color: var(--sage-dark); }
 .hero-actions {
@@ -260,7 +274,7 @@ strong { font-weight: 600; }
   flex-wrap: wrap;
   gap: 0.85rem;
   margin-top: 2rem;
-  animation: enter 1.2s var(--ease) 0.45s both;
+  @media (prefers-reduced-motion: no-preference) { animation: enter 1.2s var(--ease) 0.45s both; }
 }
 
 .hero-visual {
@@ -268,7 +282,7 @@ strong { font-weight: 600; }
   position: relative;
   justify-self: center;
   width: min(100%, 470px);
-  animation: enter-scale 1.5s var(--ease) 0.15s both;
+  @media (prefers-reduced-motion: no-preference) { animation: enter-scale 1.5s var(--ease) 0.15s both; }
 }
 .arch {
   position: relative;
@@ -293,7 +307,7 @@ strong { font-weight: 600; }
   left: -12.5%;
   top: -10%;
   z-index: -1;
-  animation: spin 60s linear infinite;
+  @media (prefers-reduced-motion: no-preference) { animation: spin 60s linear infinite; }
 }
 .orbit circle { fill: none; stroke: var(--clay); stroke-width: 0.5; stroke-dasharray: 2 5; opacity: 0.7; }
 
@@ -312,7 +326,7 @@ strong { font-weight: 600; }
   font-size: 0.85rem;
   line-height: 1.3;
   color: var(--stone-mid);
-  animation: float 6s ease-in-out infinite;
+  @media (prefers-reduced-motion: no-preference) { animation: float 6s ease-in-out infinite; }
 }
 .chip strong { color: var(--stone); font-weight: 700; }
 .chip-ico {
@@ -606,15 +620,15 @@ strong { font-weight: 600; }
   list-style: none;
   cursor: pointer;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   padding: 1.25rem 1.5rem;
   font-weight: 600;
   font-size: 1.05rem;
 }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after {
+/* Marcador antes del texto, como recomienda la guía de acordeones */
+.faq summary::before {
   content: '';
   flex-shrink: 0;
   width: 2rem; height: 2rem;
@@ -623,12 +637,27 @@ strong { font-weight: 600; }
     linear-gradient(var(--sage-dark), var(--sage-dark)) center / 12px 2px no-repeat,
     linear-gradient(var(--sage-dark), var(--sage-dark)) center / 2px 12px no-repeat,
     var(--sand);
-  transition: transform 0.5s var(--ease), background-color 0.3s ease;
 }
-.faq details[open] summary::after { transform: rotate(135deg); }
+.faq details[open] > summary::before { rotate: 135deg; }
 .faq summary:hover { color: var(--sage-dark); }
-.faq-body { padding: 0 1.5rem 1.4rem; color: var(--stone-mid); max-width: 70ch; }
-.faq details[open] .faq-body { animation: enter 0.6s var(--ease); }
+.faq-body { padding: 0 1.5rem 1.4rem calc(1.5rem + 3rem); color: var(--stone-mid); max-width: 70ch; }
+
+/* Apertura y cierre animados con ::details-content */
+.faq details::details-content {
+  interpolate-size: allow-keywords;
+  overflow: clip;
+  contain: layout;
+}
+.faq details:not([open])::details-content { block-size: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .faq summary::before { transition: rotate 0.4s var(--ease); }
+  .faq details::details-content {
+    transition: block-size, content-visibility, display;
+    transition-duration: 0.4s;
+    transition-timing-function: var(--ease);
+    transition-behavior: allow-discrete;
+  }
+}
 
 /* ══════════════════════════════════════
    CIERRE
@@ -644,7 +673,7 @@ strong { font-weight: 600; }
 .closing-main { display: flex; flex-direction: column; align-items: center; }
 .closing-logo {
   width: 140px; height: auto;
-  animation: breathe 7s ease-in-out infinite;
+  @media (prefers-reduced-motion: no-preference) { animation: breathe 7s ease-in-out infinite; }
 }
 .closing-title {
   margin-top: 1.5rem;
@@ -787,7 +816,7 @@ strong { font-weight: 600; }
   margin-left: -550px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-450 -450 900 900'%3E%3Cg fill='none' stroke='%23ddb590' stroke-width='1.2'%3E%3Ccircle r='60'/%3E%3Ccircle r='120'/%3E%3Ccircle r='180'/%3E%3Ccircle r='250'/%3E%3Ccircle r='330'/%3E%3Ccircle r='420'/%3E%3Cpath transform='rotate(0.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(30.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(60.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(90.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(120.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(150.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(180.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(210.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(240.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(270.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(300.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(330.00)' d='M0,-60 C22,-90.0 22,-90.0 0,-120 C-22,-90.0 -22,-90.0 0,-60Z'/%3E%3Cpath transform='rotate(0.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(15.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(30.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(45.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(60.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(75.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(90.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(105.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(120.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(135.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(150.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(165.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(180.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(195.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(210.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(225.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(240.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(255.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(270.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(285.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(300.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(315.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(330.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(345.00)' d='M0,-120 C16,-150.0 16,-150.0 0,-180 C-16,-150.0 -16,-150.0 0,-120Z'/%3E%3Cpath transform='rotate(0.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(10.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(20.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(30.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(40.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(50.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(60.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(70.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(80.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(90.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(100.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(110.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(120.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(130.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(140.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(150.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(160.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(170.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(180.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(190.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(200.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(210.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(220.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(230.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(240.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(250.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(260.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(270.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(280.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(290.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(300.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(310.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(320.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(330.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(340.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(350.00)' d='M0,-180 C12,-215.0 12,-215.0 0,-250 C-12,-215.0 -12,-215.0 0,-180Z'/%3E%3Cpath transform='rotate(0.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(7.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(15.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(22.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(30.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(37.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(45.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(52.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(60.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(67.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(75.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(82.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(90.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(97.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(105.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(112.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(120.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(127.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(135.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(142.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(150.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(157.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(165.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(172.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(180.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(187.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(195.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(202.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(210.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(217.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(225.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(232.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(240.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(247.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(255.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(262.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(270.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(277.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(285.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(292.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(300.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(307.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(315.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(322.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(330.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(337.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(345.00)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Cpath transform='rotate(352.50)' d='M0,-250 C9,-290.0 9,-290.0 0,-330 C-9,-290.0 -9,-290.0 0,-250Z'/%3E%3Ccircle transform='rotate(0)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(5)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(10)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(15)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(20)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(25)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(30)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(35)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(40)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(45)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(50)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(55)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(60)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(65)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(70)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(75)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(80)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(85)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(90)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(95)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(100)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(105)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(110)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(115)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(120)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(125)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(130)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(135)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(140)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(145)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(150)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(155)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(160)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(165)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(170)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(175)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(180)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(185)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(190)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(195)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(200)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(205)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(210)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(215)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(220)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(225)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(230)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(235)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(240)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(245)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(250)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(255)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(260)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(265)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(270)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(275)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(280)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(285)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(290)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(295)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(300)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(305)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(310)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(315)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(320)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(325)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(330)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(335)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(340)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(345)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(350)' cy='-375' r='4'/%3E%3Ccircle transform='rotate(355)' cy='-375' r='4'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
   opacity: 0.09;
-  animation: spin 180s linear infinite;
+  @media (prefers-reduced-motion: no-preference) { animation: spin 180s linear infinite; }
 }
 
 /* En los bloques de color la textura queda debajo del contenido */
@@ -822,16 +851,66 @@ strong { font-weight: 600; }
 .burger.active span:nth-child(2) { opacity: 0; transform: translateX(8px); }
 .burger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
+/* El menú es un <dialog> modal: el navegador deja inerte el resto de la
+   página, encierra el foco, maneja Esc y devuelve el foco al botón.
+   Se abre con un círculo que crece desde el botón del menú. */
 .mmenu {
+  --from: calc(100% - 2.6rem) calc(var(--safe-top) + 2.6rem);
   position: fixed;
   inset: 0;
-  z-index: 95;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--cream);
-  clip-path: circle(0% at calc(100% - 2.6rem) 2.6rem);
-  transition: clip-path 0.7s var(--ease);
+  color: inherit;
+  opacity: 0;
+  transition-property: opacity, display, overlay;
+  transition-duration: 0.2s;
+  transition-behavior: allow-discrete;
+
+  @media (prefers-reduced-motion: no-preference) {
+    opacity: 1;
+    clip-path: circle(0% at var(--from));
+    transition-property: clip-path, display, overlay;
+    transition-duration: 0.7s;
+    transition-timing-function: var(--ease);
+  }
 }
-.mmenu.open { clip-path: circle(150% at calc(100% - 2.6rem) 2.6rem); }
+/* data-closing activa la animación de salida en navegadores sin
+   transición de display/overlay (Firefox y Safari) */
+.mmenu[open]:where(:not([data-closing])) {
+  opacity: 1;
+  @starting-style { opacity: 0; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    clip-path: circle(150% at var(--from));
+    @starting-style { clip-path: circle(0% at var(--from)); }
+  }
+}
+/* Evita que el scroll sobre el menú pase a la página de abajo */
+.mmenu::backdrop {
+  background: transparent;
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+.mmenu-top {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-h);
+  box-sizing: content-box;
+  padding-top: var(--safe-top);
+}
+.mmenu-top img { height: 46px; width: auto; }
 .mmenu-inner {
   position: relative;
   z-index: 1;
@@ -839,17 +918,21 @@ strong { font-weight: 600; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: calc(6.5rem + var(--safe-top)) 1.5rem calc(2.5rem + var(--safe-bottom));
+  padding: 1.5rem 1.5rem calc(2.5rem + var(--safe-bottom));
 }
 .mmenu-logo { width: 150px; height: auto; margin-bottom: 1.75rem; }
 .mmenu-links { list-style: none; width: 100%; max-width: 420px; }
-.mmenu-links li {
-  border-bottom: 1px solid var(--line);
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+.mmenu-links li { border-bottom: 1px solid var(--line); }
+/* Las opciones entran una tras otra al abrir */
+@media (prefers-reduced-motion: no-preference) {
+  .mmenu-links li {
+    transition: opacity 0.5s var(--ease), translate 0.5s var(--ease);
+    transition-delay: calc(0.18s + var(--i) * 0.05s);
+  }
+  .mmenu[open] .mmenu-links li {
+    @starting-style { opacity: 0; translate: 0 18px; }
+  }
 }
-.mmenu.open .mmenu-links li { opacity: 1; transform: none; transition-delay: calc(0.18s + var(--i) * 0.05s); }
 .mmenu-links a {
   display: flex;
   align-items: center;
@@ -877,9 +960,7 @@ strong { font-weight: 600; }
   font-weight: 500;
   text-decoration: none;
 }
-body.menu-open { overflow: hidden; }
-body.menu-open .wa-float { opacity: 0; pointer-events: none; }
-body.menu-open .nav { background: transparent; box-shadow: none; backdrop-filter: none; }
+.burger-close { display: block; }
 
 /* ══════════════════════════════════════
    TU PRIMERA CLASE
@@ -1016,7 +1097,7 @@ body.menu-open .nav { background: transparent; box-shadow: none; backdrop-filter
   color: #fff;
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
   box-shadow: 0 14px 30px -10px rgba(214,36,159,0.6);
-  animation: float 5s ease-in-out infinite;
+  @media (prefers-reduced-motion: no-preference) { animation: float 5s ease-in-out infinite; }
 }
 .insta-sticker .ico { width: 2rem; height: 2rem; }
 
@@ -1064,21 +1145,24 @@ body.menu-open .nav { background: transparent; box-shadow: none; backdrop-filter
   inset: 0;
   border-radius: 50%;
   border: 2px solid var(--sage);
-  animation: ping 2.8s var(--ease) infinite;
+  @media (prefers-reduced-motion: no-preference) { animation: ping 2.8s var(--ease) infinite; }
 }
 @keyframes ping { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.6); opacity: 0; } }
 
 /* ══════════════════════════════════════
    APARICIÓN AL HACER SCROLL
 ══════════════════════════════════════ */
-.js .reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  filter: blur(4px);
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), filter 0.9s var(--ease);
-  transition-delay: calc(var(--d, 0) * 0.12s);
+/* Solo se ocultan para animar si la persona no pidió menos movimiento */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    filter: blur(4px);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), filter 0.9s var(--ease);
+    transition-delay: calc(var(--d, 0) * 0.12s);
+  }
+  .js .reveal.in { opacity: 1; transform: none; filter: none; }
 }
-.js .reveal.in { opacity: 1; transform: none; filter: none; }
 
 /* ══════════════════════════════════════
    ACCESIBILIDAD
@@ -1105,14 +1189,8 @@ summary:focus-visible {
 .block-sage a:focus-visible,
 .closing a:focus-visible { outline-color: var(--clay-light); }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation: none !important;
-    transition-duration: 0.01ms !important;
-    transition-delay: 0s !important;
-  }
-  .js .reveal { opacity: 1; transform: none; filter: none; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 /* ══════════════════════════════════════

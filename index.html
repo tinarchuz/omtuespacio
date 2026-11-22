@@ -117,9 +117,15 @@
 </header>
 
 <!-- MENÚ MOBILE -->
-<div class="mmenu" id="mobileMenu" hidden>
+<dialog class="mmenu" id="mobileMenu" aria-label="Menú">
   <div class="blobs" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span></div>
-  <nav class="mmenu-inner" aria-label="Menú">
+  <div class="wrap mmenu-top">
+    <img src="logos/om-horizontal.svg" alt="" width="1046" height="345">
+    <button class="burger burger-close active" id="menuClose" aria-label="Cerrar menú" autofocus>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mmenu-inner" aria-label="Secciones">
     <img src="logos/om-principal.svg" alt="" width="611" height="635" class="mmenu-logo">
     <ul class="mmenu-links">
       <li style="--i:0"><a href="#clases"><svg class="ico ico-stroke"><use href="#i-columpio"/></svg>Clases</a></li>
@@ -137,7 +143,7 @@
       <a href="https://www.instagram.com/omtuespacio/" target="_blank" rel="noopener"><svg class="ico ico-stroke"><use href="#i-ig"/></svg>@omtuespacio</a>
     </div>
   </nav>
-</div>
+</dialog>
 
 <main>
 
@@ -430,10 +436,10 @@
 </section>
 
 <!-- PREGUNTAS -->
-<section class="block block-cream" id="preguntas">
+<section class="block block-cream" id="preguntas" aria-labelledby="preguntas-titulo">
   <div class="wrap faq-wrap">
     <header class="block-head reveal">
-      <h2 class="h2">Preguntas frecuentes</h2>
+      <h2 class="h2" id="preguntas-titulo">Preguntas frecuentes</h2>
       <p>Si no encontrás tu respuesta, escribile a Gisele por WhatsApp.</p>
     </header>
     <div class="faq reveal">
@@ -526,43 +532,60 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  // Menú mobile
+  // Menú mobile: <dialog> modal (foco, Esc e inercia del fondo los maneja el navegador)
   const burger = document.getElementById('burger');
   const menu = document.getElementById('mobileMenu');
-  function setMenu(open) {
-    burger.classList.toggle('active', open);
-    burger.setAttribute('aria-expanded', open);
-    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-    document.body.classList.toggle('menu-open', open);
-    if (open) {
-      menu.hidden = false;
-      menu.scrollTop = 0;
-      requestAnimationFrame(() => menu.classList.add('open'));
-    } else {
-      menu.classList.remove('open');
-      setTimeout(() => { if (!menu.classList.contains('open')) menu.hidden = true; }, 450);
-    }
+
+  // Firefox y Safari no animan la salida de elementos del top layer:
+  // ahí se marca data-closing, se espera la animación y recién se cierra
+  let displayTransition;
+  function canTransitionDisplay() {
+    if (displayTransition !== undefined) return displayTransition;
+    if (!window.CSS?.supports?.('transition-behavior', 'allow-discrete')) return (displayTransition = false);
+    const probe = document.createElement('div');
+    probe.style.cssText = 'transition: display 1s allow-discrete !important; display: block;';
+    document.body.appendChild(probe);
+    getComputedStyle(probe).display;
+    probe.style.display = 'none';
+    displayTransition = getComputedStyle(probe).display === 'block';
+    probe.remove();
+    return displayTransition;
   }
-  burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
-  // Los links del menú cierran el menú y recién después llevan a la sección,
-  // porque mientras está abierto la página no puede scrollear
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', e => {
-    const href = a.getAttribute('href');
-    if (!href.startsWith('#')) { setMenu(false); return; }
-    e.preventDefault();
-    const target = document.querySelector(href);
-    setMenu(false);
-    if (target) {
-      setTimeout(() => {
-        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
-        history.replaceState(null, '', href);
-      }, 50);
+  async function closeMenu() {
+    if (!menu.open) return;
+    if (!(CSS.supports('overlay', 'auto') && canTransitionDisplay())) {
+      menu.setAttribute('data-closing', '');
+      const animations = menu.getAnimations({ subtree: true });
+      if (animations.length) {
+        await Promise.race([
+          Promise.allSettled(animations.map(a => a.finished)),
+          new Promise(r => setTimeout(r, 1000)),
+        ]);
+      }
+      menu.removeAttribute('data-closing');
     }
-  }));
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); burger.focus(); }
+    menu.close();
+  }
+  burger.addEventListener('click', () => {
+    menu.showModal();
+    menu.scrollTop = 0;
+    burger.setAttribute('aria-expanded', 'true');
   });
-  window.matchMedia('(min-width: 861px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+  menu.addEventListener('close', () => burger.setAttribute('aria-expanded', 'false'));
+  document.getElementById('menuClose').addEventListener('click', closeMenu);
+  // Esc también cierra con animación
+  menu.addEventListener('cancel', e => {
+    if (e.cancelable) { e.preventDefault(); closeMenu(); }
+  });
+  // Cada opción cierra el menú y lleva a su sección
+  menu.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    const href = a.getAttribute('href');
+    closeMenu();
+    document.querySelector(href)?.scrollIntoView();
+    history.replaceState(null, '', href);
+  }));
+  window.matchMedia('(min-width: 861px)').addEventListener('change', e => { if (e.matches && menu.open) menu.close(); });
 
   // Aparición suave al hacer scroll
   const reveals = document.querySelectorAll('.reveal');
@@ -588,13 +611,6 @@
     });
   }
 
-  // Preguntas: una abierta a la vez
-  document.querySelectorAll('.faq details').forEach(d => {
-    d.addEventListener('toggle', () => {
-      if (!d.open) return;
-      document.querySelectorAll('.faq details[open]').forEach(o => { if (o !== d) o.open = false; });
-    });
-  });
 </script>
 </body>
 </html>
