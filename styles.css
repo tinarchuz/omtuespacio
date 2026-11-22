@@ -443,7 +443,7 @@ strong { font-weight: 600; }
 .block-photo .block-head p { color: rgba(245,240,232,0.75); }
 .sched {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
 }
 .slot {
@@ -477,9 +477,52 @@ strong { font-weight: 600; }
 }
 .slot-day { font-size: 0.95rem; font-weight: 600; color: var(--clay-light); }
 .slot-time { font-family: var(--display); font-size: 3rem; line-height: 1.05; }
-.slot-time-sm { font-size: 1.75rem; line-height: 1.7; white-space: nowrap; }
 .slot-name { font-weight: 600; font-size: 1.05rem; }
-.slot-note { font-size: 0.9rem; color: rgba(245,240,232,0.72); flex: 1; }
+.slot-turn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: rgba(245,240,232,0.72);
+  flex: 1;
+}
+.slot-turn .ico { width: 1rem; height: 1rem; color: var(--clay-light); }
+
+/* Online y tarot, debajo de la semana */
+.sched-extra {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.extra {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.4rem;
+  border-radius: var(--r-md);
+  background: rgba(245,240,232,0.06);
+  border: 1px solid rgba(245,240,232,0.14);
+  text-decoration: none;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: rgba(245,240,232,0.75);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+.extra strong { color: var(--cream); font-weight: 600; font-size: 1rem; }
+.extra:hover { background: rgba(245,240,232,0.12); border-color: rgba(221,181,144,0.6); }
+.extra-ico {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.8rem; height: 2.8rem;
+  border-radius: 50%;
+  background: rgba(221,181,144,0.18);
+  color: var(--clay-light);
+}
+.extra-ico .ico { width: 1.35rem; height: 1.35rem; }
+.extra-cta { margin-left: auto; font-weight: 600; color: var(--cream); white-space: nowrap; }
+
 .slot-cta {
   display: inline-flex;
   align-items: center;
@@ -1310,7 +1353,8 @@ summary:focus-visible {
 @media (max-width: 1020px) {
   .cards { grid-template-columns: 1fr 1fr; }
   .card-feature { grid-column: 1 / -1; }
-  .sched { grid-template-columns: 1fr 1fr; row-gap: 1.75rem; }
+  .sched { grid-template-columns: repeat(2, 1fr); row-gap: 1.75rem; }
+  .slot-hl { grid-column: 1 / -1; }
   .quotes { grid-template-columns: 1fr; max-width: 640px; }
   .chip-a { left: -4%; }
   .chip-b { right: -6%; }
@@ -1340,7 +1384,25 @@ summary:focus-visible {
 
   .cards { grid-template-columns: 1fr; }
   .card { padding: 1.6rem; }
-  .sched { grid-template-columns: 1fr; }
+  .sched { grid-template-columns: 1fr; row-gap: 0.75rem; }
+  .sched .slot-hl { margin-top: 0.9rem; }
+  /* En el celular cada día es una fila compacta: día y hora a la izquierda */
+  .slot {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    align-items: center;
+    column-gap: 1rem;
+    row-gap: 0.1rem;
+    padding: 1rem 1.2rem;
+  }
+  .slot-day { grid-column: 1; grid-row: 1; }
+  .slot-time { grid-column: 1; grid-row: 2 / span 2; font-size: 2.2rem; align-self: start; }
+  .slot-name { grid-column: 2; grid-row: 1 / span 2; align-self: end; }
+  .slot-turn { grid-column: 2; grid-row: 3; align-self: start; }
+  .slot-cta { grid-column: 1 / -1; margin-top: 0.6rem; }
+  .sched-extra { grid-template-columns: 1fr; }
+  .extra { display: grid; grid-template-columns: auto 1fr; column-gap: 1rem; row-gap: 0.4rem; }
+  .extra-cta { grid-column: 2; margin-left: 0; }
   .closing-actions { grid-template-columns: 1fr; }
   .option { flex-direction: row; justify-content: flex-start; padding: 1rem 1.25rem; }
   .option-ico { width: 2.8rem; height: 2.8rem; font-size: 1.2rem; }
